@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using Microsoft.AspNetCore.Mvc;
-using Verizon.Models.ViewModels;
+using Verizon.Models.Helpers;
 using Verizon.Services;
 
 namespace Verizon.API.Controllers
@@ -33,7 +33,7 @@ namespace Verizon.API.Controllers
         {
             var products = _productService.GetProducts();
 
-            return Ok(products.Select(p => new ProductViewModel(p, annualConsumption)).OrderBy(q => q.AnnualCosts));
+            return Ok(products.Select(p => p.ToViewModel(annualConsumption)).OrderBy(q => q.AnnualCosts));
         }
     }
 }

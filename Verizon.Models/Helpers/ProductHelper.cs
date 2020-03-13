@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Verizon.Models.DbModels;
+using Verizon.Models.ViewModels;
 
 namespace Verizon.Models.Helpers
 {
@@ -31,5 +32,12 @@ namespace Verizon.Models.Helpers
 
             return baseCost + consumptionCosts;
         }
+
+        public static ProductViewModel ToViewModel(this Product product, double annualcConsumption)
+        {
+            return new ProductViewModel() { Name = product.Name, AnnualCosts = product.CalculateAnnualCosts(annualcConsumption) };
+        }
+
+
     }
 }
